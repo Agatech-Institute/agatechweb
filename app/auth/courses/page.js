@@ -1,26 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Box,
-  Container,
-  Grid,
-  Chip,
-  CardHeader,
-  IconButton,
-  Tooltip,
-} from '@mui/material'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import SchoolIcon from '@mui/icons-material/School'
-import StorageIcon from '@mui/icons-material/Storage'
-import TimerIcon from '@mui/icons-material/Timer'
-import BuildIcon from '@mui/icons-material/Build'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import { FaBookOpen, FaClock, FaTools } from 'react-icons/fa'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 
 const coursesData = [
@@ -28,6 +12,7 @@ const coursesData = [
     id: 1,
     title: 'App Development',
     image: '/APP.png',
+    price: 85000,
     whatToGain: [
       'Master React Native & Flutter',
       'Build cross-platform apps',
@@ -40,6 +25,7 @@ const coursesData = [
     id: 2,
     title: 'Web Development',
     image: '/WEB.png',
+    price: 95000,
     whatToGain: [
       'Full-stack web expertise',
       'Modern JavaScript frameworks',
@@ -52,6 +38,7 @@ const coursesData = [
     id: 3,
     title: 'Data Science',
     image: '/DATA.png',
+    price: 110000,
     whatToGain: [
       'Data analysis & visualization',
       'Machine learning models',
@@ -64,6 +51,7 @@ const coursesData = [
     id: 4,
     title: 'UI/UX Design',
     image: '/UI.png',
+    price: 75000,
     whatToGain: [
       'Design thinking methodology',
       'Prototyping & wireframing',
@@ -76,6 +64,7 @@ const coursesData = [
     id: 5,
     title: 'AI & Machine Learning',
     image: '/AI.png',
+    price: 125000,
     whatToGain: [
       'Deep learning fundamentals',
       'NLP & computer vision',
@@ -88,6 +77,7 @@ const coursesData = [
     id: 6,
     title: 'Cloud & DevOps',
     image: '/AI.png',
+    price: 100000,
     whatToGain: [
       'Cloud infrastructure mastery',
       'CI/CD pipelines',
@@ -100,6 +90,7 @@ const coursesData = [
 
 export default function Courses() {
   const [favorites, setFavorites] = useState(new Set())
+  const router = useRouter()
 
   const toggleFavorite = (courseId) => {
     const newFavorites = new Set(favorites)
@@ -112,324 +103,131 @@ export default function Courses() {
   }
 
   return (
-    <main>
-      <Container maxWidth="xl">
-        <Box sx={{ py: { xs: 3, sm: 4, md: 6 }, mb: 4 }}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textAlign: 'center',
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-            }}
-          >
-            Featured Courses
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              color: '#666',
-              mt: 1,
-              textAlign: 'center',
-              fontSize: { xs: '0.95rem', md: '1.1rem' },
-            }}
-          >
-            Level up your skills with our industry-leading courses
-          </Typography>
-        </Box>
+    <main className="min-h-screen bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+        {/* Header Section */}
+        <div className="mx-auto max-w-3xl py-16 text-center md:py-20">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-agatech-primarybg">Build what is next</p>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
+            Choose your next skill.
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+            Practical, project-led courses designed to help you move from curious to capable.
+          </p>
+        </div>
 
-        <Grid
-          container
-          spacing={{ xs: 2, sm: 2.5, md: 3 }}
-          sx={{
-            pb: { xs: 4, md: 6 },
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'stretch',
-          }}
-        >
+        {/* Courses Grid */}
+        <div className="grid grid-cols-1 gap-6 pb-20 sm:grid-cols-2 lg:grid-cols-3 md:pb-24">
           {coursesData.map((course) => (
-            <Grid item xs={12} sm={6} md={4} key={course.id} sx={{ display: 'flex' }}>
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  background: '#fff',
-                  '&:hover': {
-                    transform: 'translateY(-12px)',
-                    boxShadow: '0 20px 40px rgba(102, 126, 234, 0.15)',
-                  },
-                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.08)',
-                }}
-              >
-                {/* Course Image */}
-                <CardMedia
-                  sx={{
-                    height: { xs: 200, sm: 220, md: 240 },
-                    position: 'relative',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <Image
-                    src={course.image}
-                    alt={course.title}
-                    fill
-                    style={{
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background:
-                        'linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%)',
-                    }}
-                  />
-                </CardMedia>
-
-                {/* Card Header */}
-                <CardHeader
-                  title={
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        fontWeight: 700,
-                        fontSize: { xs: '1.1rem', md: '1.3rem' },
-                        color: '#1a1a1a',
-                        mb: 1,
-                      }}
-                    >
-                      {course.title}
-                    </Typography>
-                  }
-                  action={
-                    <Tooltip
-                      title={
-                        favorites.has(course.id)
-                          ? 'Remove from favorites'
-                          : 'Add to favorites'
-                      }
-                    >
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleFavorite(course.id)}
-                        sx={{
-                          color: favorites.has(course.id)
-                            ? '#ff6b6b'
-                            : '#ccc',
-                          '&:hover': {
-                            color: '#ff6b6b',
-                          },
-                        }}
-                      >
-                        {favorites.has(course.id) ? (
-                          <FavoriteIcon />
-                        ) : (
-                          <FavoriteBorderIcon />
-                        )}
-                      </IconButton>
-                    </Tooltip>
-                  }
-                  sx={{
-                    pb: 1,
-                  }}
+            <div
+              key={course.id}
+              className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              {/* Course Image */}
+              <div className="relative h-48 overflow-hidden bg-slate-100 sm:h-56 md:h-60">
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition duration-500 hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/25 to-transparent"></div>
+              </div>
 
-                {/* Card Content */}
-                <CardContent
-                  sx={{
-                    flex: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 2.5,
-                  }}
+              {/* Card Header with Title & Favorite Button */}
+              <div className="flex items-start justify-between border-b border-slate-100 p-5">
+                <h2 className="flex-1 text-xl font-bold text-slate-950 md:text-2xl">
+                  {course.title}
+                </h2>
+                <button
+                  onClick={() => toggleFavorite(course.id)}
+                  className="ml-2 rounded-full p-2 text-2xl transition-colors hover:bg-amber-50 hover:text-orange-600"
+                  title={
+                    favorites.has(course.id)
+                      ? 'Remove from favorites'
+                      : 'Add to favorites'
+                  }
                 >
-                  {/* What to Gain Section */}
-                  <Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
-                      <SchoolIcon
-                        sx={{
-                          color: '#667eea',
-                          mr: 1,
-                          fontSize: '1.2rem',
-                        }}
-                      />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          fontWeight: 700,
-                          color: '#1a1a1a',
-                          fontSize: '0.95rem',
-                        }}
-                      >
-                        What You'll Gain
-                      </Typography>
-                    </Box>
-                    <Box sx={{ ml: 3.5 }}>
-                      {course.whatToGain.map((item, idx) => (
-                        <Typography
+                  {favorites.has(course.id) ? (
+                    <AiFillHeart className="text-orange-600" />
+                  ) : (
+                    <AiOutlineHeart className="text-slate-300" />
+                  )}
+                </button>
+              </div>
+
+              {/* Card Content */}
+              <div className="flex-1 space-y-6 p-5">
+                {/* What to Gain Section */}
+                <div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <FaBookOpen className="text-agatech-primarybg text-lg" />
+                    <h3 className="text-base font-bold text-slate-900">
+                      What You'll Gain
+                    </h3>
+                  </div>
+                  <ul className="ml-6 space-y-2">
+                    {course.whatToGain.map((item, idx) => (
+                        <li
                           key={idx}
-                          variant="body2"
-                          sx={{
-                            color: '#666',
-                            fontSize: '0.85rem',
-                            mb: 0.8,
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            '&:before': {
-                              content: '"✓"',
-                              color: '#667eea',
-                              fontWeight: 700,
-                              mr: 1,
-                              flexShrink: 0,
-                            },
-                          }}
-                        >
-                          {item}
-                        </Typography>
-                      ))}
-                    </Box>
-                  </Box>
-
-                  {/* Duration */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <TimerIcon
-                      sx={{
-                        color: '#764ba2',
-                        fontSize: '1.2rem',
-                      }}
-                    />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: '#1a1a1a',
-                        fontWeight: 600,
-                        fontSize: '0.9rem',
-                      }}
-                    >
-                      Duration: <span style={{ color: '#667eea' }}>{course.duration}</span>
-                    </Typography>
-                  </Box>
-
-                  {/* Tech Stack */}
-                  <Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
-                      <BuildIcon
-                        sx={{
-                          color: '#764ba2',
-                          mr: 1,
-                          fontSize: '1.2rem',
-                        }}
-                      />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          fontWeight: 700,
-                          color: '#1a1a1a',
-                          fontSize: '0.95rem',
-                        }}
+                          className="flex items-start text-sm text-slate-600"
                       >
-                        Tech Stack
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: 0.8,
-                        ml: 3.5,
-                      }}
-                    >
-                      {course.techStack.map((tech, idx) => (
-                        <Chip
-                          key={idx}
-                          label={tech}
-                          size="small"
-                          sx={{
-                            background:
-                              'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
-                            color: '#667eea',
-                            fontWeight: 600,
-                            fontSize: '0.8rem',
-                            height: 'auto',
-                            py: 0.5,
-                            '&:hover': {
-                              background:
-                                'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)',
-                            },
-                          }}
-                        />
-                      ))}
-                    </Box>
-                  </Box>
-                </CardContent>
+                          <span className="mr-2 shrink-0 font-bold text-agatech-primarybg">
+                          ✓
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Enroll Button */}
-                <Box
-                  sx={{
-                    p: 2,
-                    pt: 1,
-                    borderTop: '1px solid #eee',
-                  }}
+                {/* Duration */}
+                <div className="flex items-center gap-3">
+                  <FaClock className="text-orange-600 text-lg" />
+                  <p className="text-sm font-semibold text-slate-900">
+                    Duration:{' '}
+                    <span className="text-agatech-primarybg">{course.duration}</span>
+                  </p>
+                </div>
+
+                {/* Tech Stack */}
+                <div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <FaTools className="text-orange-600 text-lg" />
+                    <h3 className="text-base font-bold text-slate-900">
+                      Tech Stack
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 ml-6">
+                    {course.techStack.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-orange-700 transition-colors hover:bg-amber-100"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Enroll Button */}
+              <div className="border-t border-slate-100 p-5">
+                <button
+                  onClick={() => router.push(`/auth/coursereg?course=${course.id}`)}
+                  className="w-full rounded-lg bg-agatech-primarybg py-3 font-bold text-white transition-all duration-300 hover:bg-teal-800 hover:shadow-lg active:scale-[0.98]"
                 >
-                  <Box
-                    component="button"
-                    onClick={() => alert(`Enrolled in ${course.title}!`)}
-                    sx={{
-                      width: '100%',
-                      py: 1.2,
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 1,
-                      fontWeight: 700,
-                      fontSize: '0.95rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.02)',
-                        boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)',
-                      },
-                      '&:active': {
-                        transform: 'scale(0.98)',
-                      },
-                    }}
-                  >
-                    Start Course
-                  </Box>
-                </Box>
-              </Card>
-            </Grid>
+                  Start Course
+                </button>
+              </div>
+            </div>
           ))}
-        </Grid>
-      </Container>
-
-      <style jsx global>{`
-        @media (max-width: 600px) {
-          body {
-            overflow-x: hidden;
-          }
-        }
-
-        @media (max-width: 900px) {
-          .MuiGrid-root {
-            padding: 0.5rem;
-          }
-        }
-      `}</style>
+        </div>
+      </div>
     </main>
   )
+
+ 
+  
 }

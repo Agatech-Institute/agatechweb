@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+/* stylelint-disable at-rule-no-unknown */
+@theme {
+    --color-agatech-primarybg: #0A7C6E;
+    --color-agatech-primary: #F59E0B;
+    --color-agatech-primary-light: #FF6B35;
+   
+
+}
+

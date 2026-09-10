@@ -73,7 +73,7 @@ const achievements = [
 
 export default function AboutPage() {
   return (
-    <Box sx={{ py: 6, backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
+    <Box sx={{ py: 6, backgroundColor: "#f8fafc", minHeight: "100vh" }}>
       <Container maxWidth="lg">
         {/* Hero Section */}
         <Box sx={{ mb: 8, textAlign: "center" }}>
@@ -83,7 +83,7 @@ export default function AboutPage() {
             sx={{
               fontWeight: 700,
               mb: 2,
-              color: "#1976d2",
+              color: "#0A7C6E",
               fontSize: { xs: "2rem", md: "3.5rem" },
             }}
           >
@@ -91,7 +91,7 @@ export default function AboutPage() {
           </Typography>
           <Typography
             variant="h6"
-            sx={{ color: "#666", maxWidth: 600, mx: "auto", mb: 4 }}
+            sx={{ color: "#475569", maxWidth: 700, mx: "auto", mb: 4, lineHeight: 1.8 }}
           >
             A child with a dream in Abuja, a graduate searching for hope in
             Lagos, a Mother daring to begin again in PortHacourt this is where our
@@ -110,8 +110,9 @@ export default function AboutPage() {
         <Card
           sx={{
             mb: 8,
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+            boxShadow: "0 12px 32px rgba(15, 23, 42, 0.08)",
             backgroundColor: "#fff",
+            border: "1px solid #e2e8f0",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -119,11 +120,11 @@ export default function AboutPage() {
           <CardContent sx={{ p: 4 }}>
             <Typography
               variant="h5"
-              sx={{ fontWeight: 700, mb: 2, color: "#1976d2" }}
+              sx={{ fontWeight: 700, mb: 2, color: "#0A7C6E" }}
             >
               Our Mission
             </Typography>
-            <Typography variant="body1" sx={{ color: "#555", lineHeight: 1.8 }}>
+            <Typography variant="body1" sx={{ color: "#475569", lineHeight: 1.8 }}>
               Every line of code learned, every skill mastered, and every life
               transformed is a quiet revolution waiting to shake a nation awake.
               Our mission is to equip one million Nigerians every year with
@@ -144,7 +145,7 @@ export default function AboutPage() {
               fontWeight: 700,
               mb: 4,
               textAlign: "center",
-              color: "#1976d2",
+              color: "#0A7C6E",
             }}
           >
             Our Impact
@@ -156,7 +157,7 @@ export default function AboutPage() {
                   sx={{
                     p: 3,
                     textAlign: "center",
-                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
+                    boxShadow: "0 4px 16px rgba(15, 23, 42, 0.06)",
                     backgroundColor: "#fff",
                     width: "100%",
                     display: "flex",
@@ -172,11 +173,11 @@ export default function AboutPage() {
                 >
                   <Typography
                     variant="h4"
-                    sx={{ fontWeight: 700, color: "#1976d2", mb: 1 }}
+                    sx={{ fontWeight: 700, color: "#0A7C6E", mb: 1 }}
                   >
                     {achievement.metric}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "#666" }}>
+                  <Typography variant="body2" sx={{ color: "#64748b" }}>
                     {achievement.label}
                   </Typography>
                 </Paper>
@@ -193,7 +194,7 @@ export default function AboutPage() {
               fontWeight: 700,
               mb: 4,
               textAlign: "center",
-              color: "#1976d2",
+              color: "#0A7C6E",
             }}
           >
             Core Values
@@ -206,12 +207,12 @@ export default function AboutPage() {
                     height: "100%",
                     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
                     backgroundColor: "#fff",
-                    border: "1px solid #e0e0e0",
+                    border: "1px solid #e2e8f0",
                     transition: "all 0.3s ease",
                     "&:hover": {
-                      boxShadow: "0 8px 24px rgba(25, 118, 210, 0.15)",
+                      boxShadow: "0 12px 28px rgba(10, 124, 110, 0.14)",
                       transform: "translateY(-8px)",
-                      borderColor: "#1976d2",
+                      borderColor: "#0A7C6E",
                     },
                     
                   }}
@@ -219,13 +220,13 @@ export default function AboutPage() {
                   <CardContent className="pr-5">
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 700, mb: 1.5, color: "#1976d2",alignItems:"center",paddingHorizontal:20 }}
+                      sx={{ fontWeight: 700, mb: 1.5, color: "#0A7C6E", alignItems: "center", px: 2 }}
                     >
                       {value.title}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "#666", lineHeight: 1.6 }}
+                      sx={{ color: "#64748b", lineHeight: 1.6 }}
                     >
                       {value.description}
                     </Typography>
@@ -244,7 +245,7 @@ export default function AboutPage() {
               fontWeight: 700,
               mb: 4,
               textAlign: "center",
-              color: "#1976d2",
+              color: "#0A7C6E",
             }}
           >
             Leadership Team
@@ -257,7 +258,7 @@ export default function AboutPage() {
                     height: "100%",
                     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
                     backgroundColor: "#fff",
-                    border: "1px solid #e0e0e0",
+                    border: "1px solid #e2e8f0",
                     transition: "all 0.3s ease",
                     "&:hover": {
                       boxShadow: "0 12px 32px rgba(0, 0, 0, 0.12)",
@@ -266,10 +267,10 @@ export default function AboutPage() {
                   }}
                 >
                   <CardContent>
-                    <Box sx={{ mb: 2, color: "#1976d2" }}>{member.icon}</Box>
+                    <Box sx={{ mb: 2, color: "#F97316" }}>{member.icon}</Box>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 700, mb: 0.5, color: "#222" }}
+                      sx={{ fontWeight: 700, mb: 0.5, color: "#0f172a" }}
                     >
                       {member.name}
                     </Typography>
@@ -278,13 +279,13 @@ export default function AboutPage() {
                       size="small"
                       sx={{
                         mb: 1.5,
-                        backgroundColor: "#e3f2fd",
-                        color: "#1976d2",
+                        backgroundColor: "#ccfbf1",
+                        color: "#0f766e",
                       }}
                     />
                     <Typography
                       variant="body2"
-                      sx={{ color: "#666", lineHeight: 1.6 }}
+                      sx={{ color: "#64748b", lineHeight: 1.6 }}
                     >
                       {member.bio}
                     </Typography>
@@ -300,7 +301,7 @@ export default function AboutPage() {
           sx={{
             p: { xs: 4, sm: 6, md: 8 },
             textAlign: "center",
-            backgroundColor: "#1976d2",
+            backgroundColor: "#0f172a",
             color: "#fff",
             borderRadius: 2,
             display: "flex",
@@ -344,8 +345,8 @@ export default function AboutPage() {
             <Button
               variant="contained"
               sx={{
-                backgroundColor: "#fff",
-                color: "#1976d2",
+                backgroundColor: "#F59E0B",
+                color: "#0f172a",
                 fontWeight: 700,
                 px: { xs: 3, sm: 4, md: 5 },
                 py: { xs: 1.2, sm: 1.5 },
@@ -354,7 +355,7 @@ export default function AboutPage() {
                 minWidth: { xs: "auto", sm: 150 },
                 transition: "all 0.3s ease",
                 "&:hover": {
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "#FBBF24",
                   transform: "translateY(-2px)",
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                 },
@@ -365,7 +366,7 @@ export default function AboutPage() {
             <Button
               variant="outlined"
               sx={{
-                borderColor: "#fff",
+                borderColor: "#F59E0B",
                 color: "#fff",
                 fontWeight: 700,
                 px: { xs: 3, sm: 4, md: 5 },
@@ -375,8 +376,8 @@ export default function AboutPage() {
                 minWidth: { xs: "auto", sm: 150 },
                 transition: "all 0.3s ease",
                 "&:hover": {
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  borderColor: "#fff",
+                  backgroundColor: "rgba(245, 158, 11, 0.12)",
+                  borderColor: "#FBBF24",
                   transform: "translateY(-2px)",
                   boxShadow: "0 4px 12px rgba(255, 255, 255, 0.25)",
                 },
