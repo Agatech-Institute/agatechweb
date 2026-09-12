@@ -86,7 +86,7 @@ export function Footer() {
             <p className="text-sm font-semibold text-white">Ready to start learning?</p>
             <p className="mt-2 text-sm leading-6 text-slate-400">Find the right program and take your next step with Agatech.</p>
             <Link href="/auth/courses" className="mt-5 inline-flex items-center rounded-lg bg-agatech-primary px-4 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-300">
-              View programs <span aria-hidden="true" className="ml-2">-&gt;</span>
+              View programs
             </Link>
           </div>
         </div>
