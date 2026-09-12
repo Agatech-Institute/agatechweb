@@ -1,9 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FaGithub, FaGoogle } from "react-icons/fa6"
+import { redirect } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
+import { auth, signIn } from "@/auth";
 
+export default async function Login() {
+     const session = await auth();
+      if(session?.user) {
+        redirect("/auth/coursereg");
+      };
 
-export default function Login() {
   return (
     <main className="min-h-[calc(100vh-76px)] bg-slate-50 px-6 py-10 sm:px-8 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200/60 ring-1 ring-slate-200 lg:grid-cols-[0.9fr_1.1fr]">
@@ -51,16 +58,21 @@ export default function Login() {
               <p className="mt-3 text-sm leading-6 text-slate-500">Choose a provider to continue your learning journey.</p>
             </div>
 
-            <div className="mt-8 space-y-3">
-              <button type="button" className="inline-flex h-13 w-full items-center justify-center gap-3 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-agatech-primarybg hover:shadow-sm">
+           <form >
+             <div className="mt-8 space-y-3">
+              <button onClick={async () => {
+            "use server"
+            await signIn("google")
+           }} type="button" className="inline-flex h-13 w-full items-center justify-center gap-3 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-agatech-primarybg hover:shadow-sm">
                 <FaGoogle className="text-[#4285F4]" aria-hidden="true" />
                 Continue with Google
               </button>
-              <button type="button" className="inline-flex h-13 w-full items-center justify-center gap-3 rounded-lg border border-slate-900 bg-slate-950 px-4 text-sm font-semibold text-white transition hover:bg-agatech-primarybg hover:shadow-sm">
+              {/* <button type="button" className="inline-flex h-13 w-full items-center justify-center gap-3 rounded-lg border border-slate-900 bg-slate-950 px-4 text-sm font-semibold text-white transition hover:bg-agatech-primarybg hover:shadow-sm">
                 <FaGithub className="text-lg" aria-hidden="true" />
                 Continue with GitHub
-              </button>
+              </button> */}
             </div>
+           </form>
           </div>
         </section>
       </div>

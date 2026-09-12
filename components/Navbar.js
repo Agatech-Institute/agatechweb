@@ -1,22 +1,63 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button, IconButton } from "@mui/material";
-import { ArrowForward, Close, Menu } from "@mui/icons-material";
+import { ArrowForward, Close, Logout, Menu } from "@mui/icons-material";
 import Link from 'next/link';
+import { signOut, useSession } from "next-auth/react";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === "authenticated";
+  const [hasRegisteredCourse, setHasRegisteredCourse] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function checkRegistration() {
+      if (!session?.user?.id) {
+        setHasRegisteredCourse(false);
+        return;
+      }
+
+      try {
+        const registrationsQuery = query(
+          collection(db, "courseRegistrations"),
+          where("userId", "==", session.user.id),
+          limit(1),
+        );
+        const snapshot = await getDocs(registrationsQuery);
+
+        if (isMounted) setHasRegisteredCourse(!snapshot.empty);
+      } catch (error) {
+        console.error("Unable to check course registration", error);
+        if (isMounted) setHasRegisteredCourse(false);
+      }
+    }
+
+    checkRegistration();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [session?.user?.id]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  const handleLogout = () => signOut({ callbackUrl: "/" });
 
   const isActive = (path) => pathname === path || (path !== '/' && pathname.startsWith(path));
 
   const navLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Courses', href: '/auth/courses' },
+    {
+      label: hasRegisteredCourse ? 'Dashboard' : 'Courses',
+      href: hasRegisteredCourse ? '/auth/dashboard' : '/auth/courses',
+    },
     { label: 'About', href: '/auth/about' },
    
   ];
@@ -49,14 +90,25 @@ export function Navbar() {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Button
-              component={Link}
-              href="/auth/login"
-              variant="text"
-              sx={{ color: '#334155', textTransform: 'none', fontWeight: 700, borderRadius: '8px', px: 2 }}
-            >
-              Login
-            </Button>
+            {isLoggedIn ? (
+              <Button
+                onClick={handleLogout}
+                startIcon={<Logout sx={{ fontSize: 17 }} />}
+                variant="text"
+                sx={{ color: '#334155', textTransform: 'none', fontWeight: 700, borderRadius: '8px', px: 2 }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                component={Link}
+                href="/auth/login"
+                variant="text"
+                sx={{ color: '#334155', textTransform: 'none', fontWeight: 700, borderRadius: '8px', px: 2 }}
+              >
+                Login
+              </Button>
+            )}
             <Button
               component={Link}
               href="/auth/coursereg"
@@ -100,9 +152,15 @@ export function Navbar() {
             ))}
           </div>
           <div className="mt-4 grid gap-2 border-t border-slate-100 pt-4">
-            <Button component={Link} href="/auth/login" onClick={closeMenu} variant="outlined" sx={{ color: '#334155', borderColor: '#cbd5e1', textTransform: 'none', fontWeight: 700, borderRadius: '8px', py: 1.2 }}>
-              Login
-            </Button>
+            {isLoggedIn ? (
+              <Button onClick={() => { closeMenu(); handleLogout(); }} startIcon={<Logout />} variant="outlined" sx={{ color: '#334155', borderColor: '#cbd5e1', textTransform: 'none', fontWeight: 700, borderRadius: '8px', py: 1.2 }}>
+                Logout
+              </Button>
+            ) : (
+              <Button component={Link} href="/auth/login" onClick={closeMenu} variant="outlined" sx={{ color: '#334155', borderColor: '#cbd5e1', textTransform: 'none', fontWeight: 700, borderRadius: '8px', py: 1.2 }}>
+                Login
+              </Button>
+            )}
             <Button component={Link} href="/auth/coursereg" onClick={closeMenu} variant="contained" endIcon={<ArrowForward />} sx={{ backgroundColor: '#0A7C6E', '&:hover': { backgroundColor: '#115E59' }, textTransform: 'none', fontWeight: 700, borderRadius: '8px', py: 1.2, boxShadow: 'none' }}>
               Start learning
             </Button>

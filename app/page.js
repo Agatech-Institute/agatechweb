@@ -51,7 +51,7 @@ export default function Home() {
                 href="/auth/courses"
                 className="inline-flex items-center justify-center rounded-lg bg-amber-400 px-6 py-3.5 text-sm font-bold text-slate-950 transition hover:bg-amber-300"
               >
-                Explore programs <span aria-hidden="true" className="ml-3 text-lg">-&gt;</span>
+                Explore programs 
               </Link>
               <Link
                 href="/auth/about"
@@ -76,7 +76,7 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-agatech-primarybg">Choose your direction</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Learn skills with momentum.</h2>
           </div>
-          <Link href="/auth/courses" className="text-sm font-bold text-slate-700 transition hover:text-agatech-primarybg">View all programs -&gt;</Link>
+          <Link href="/auth/courses" className="text-sm font-bold text-slate-700 transition hover:text-agatech-primarybg">View all programs</Link>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -94,7 +94,7 @@ export default function Home() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-950">{program.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{program.description}</p>
-                <span className="mt-6 inline-flex text-sm font-bold text-agatech-primarybg">Explore path <span aria-hidden="true" className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span></span>
+                <span className="mt-6 inline-flex text-sm font-bold text-agatech-primarybg">Explore path </span>
               </div>
             </Link>
           ))}
@@ -107,7 +107,7 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange-600">Your next chapter starts here</p>
             <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-950">Turn curiosity into a career you can be proud of.</h2>
           </div>
-          <Link href="/auth/coursereg" className="inline-flex w-fit items-center rounded-lg bg-agatech-primarybg px-6 py-3.5 text-sm font-bold text-white transition hover:bg-teal-800">Start learning today -&gt;</Link>
+          <Link href="/auth/coursereg" className="inline-flex w-fit items-center rounded-lg bg-agatech-primarybg px-6 py-3.5 text-sm font-bold text-white transition hover:bg-teal-800">Start learning today </Link>
         </div>
       </section>
     </main>

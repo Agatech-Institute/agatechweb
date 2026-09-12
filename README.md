@@ -16,6 +16,16 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Google sign-in
+
+In the Google Cloud OAuth client used by `AUTH_GOOGLE_ID`, add this Authorized redirect URI:
+
+```text
+http://localhost:3000/api/auth/callback/google
+```
+
+The URI must match the app origin and path exactly, including the protocol, port, and trailing path.
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
