@@ -24,6 +24,26 @@ In the Google Cloud OAuth client used by `AUTH_GOOGLE_ID`, add this Authorized r
 http://localhost:3000/api/auth/callback/google
 ```
 
+For the deployed app, also add the exact production callback URI:
+
+```text
+https://<your-vercel-domain>/api/auth/callback/google
+```
+
+In Vercel, add these Environment Variables for the `Production` environment, then redeploy:
+
+```text
+AUTH_GOOGLE_ID
+AUTH_GOOGLE_SECRET
+AUTH_SECRET
+AUTH_TRUST_HOST=true
+AUTH_FIREBASE_PROJECT_ID
+AUTH_FIREBASE_CLIENT_EMAIL
+AUTH_FIREBASE_PRIVATE_KEY
+```
+
+Do not set `AUTH_URL` to `http://localhost:3000` in Vercel. If `AUTH_URL` is configured there, use the deployed HTTPS origin instead. The Google client must also include the deployed origin under Authorized JavaScript origins.
+
 The URI must match the app origin and path exactly, including the protocol, port, and trailing path.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
