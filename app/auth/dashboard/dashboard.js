@@ -19,6 +19,8 @@ const availableCourses = [
 	{ id: 6, title: "Cloud & DevOps", image: "/AI.png", duration: "12 Weeks", price: 100000 },
 ];
 
+const getCourseImage = (course) => course?.image || availableCourses.find((item) => item.id === course?.id)?.image;
+
 export default function Dashboard({ userId, userName, userEmail }) {
 	const [registrations, setRegistrations] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -213,9 +215,9 @@ export default function Dashboard({ userId, userName, userEmail }) {
 					<div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 						{registrations.map((registration) => (
 							<Card key={registration.id} elevation={0} sx={{ borderRadius: "16px", border: "1px solid #e2e8f0", overflow: "hidden" }}>
-								<div className="relative aspect-16/9] bg-slate-100">
-									{registration.course?.image && (
-										<Image src={registration.course.image} alt={registration.course.title || "Registered course"} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw" className="object-cover" />
+								<div className="relative aspect-video bg-slate-100">
+									{getCourseImage(registration.course) && (
+										<Image src={getCourseImage(registration.course)} alt={registration.course?.title || "Registered course"} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw" className="object-cover" />
 									)}
 									<div className="absolute inset-0 bg-linear-to-t from-slate-950/70 to-transparent" />
 									<Chip label="Registered" size="small" sx={{ position: "absolute", left: 16, bottom: 16, backgroundColor: "#F59E0B", color: "#0f172a", fontWeight: 700 }} />
