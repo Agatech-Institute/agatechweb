@@ -5,9 +5,18 @@ import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { initializeApp, getApps, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-const firebaseProjectId = process.env.AUTH_FIREBASE_PROJECT_ID;
-const firebaseClientEmail = process.env.AUTH_FIREBASE_CLIENT_EMAIL;
-const firebasePrivateKey = process.env.AUTH_FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+const normalizeEnvValue = (value) => {
+  if (!value) return value;
+
+  const trimmedValue = value.trim();
+  const unquotedValue = trimmedValue.replace(/^("|')(.*)\1$/s, "$2");
+
+  return unquotedValue.replace(/\\n/g, "\n");
+};
+
+const firebaseProjectId = normalizeEnvValue(process.env.AUTH_FIREBASE_PROJECT_ID);
+const firebaseClientEmail = normalizeEnvValue(process.env.AUTH_FIREBASE_CLIENT_EMAIL);
+const firebasePrivateKey = normalizeEnvValue(process.env.AUTH_FIREBASE_PRIVATE_KEY);
 
 let firestoreInstance;
 
@@ -19,7 +28,7 @@ if (firebaseProjectId && firebaseClientEmail && firebasePrivateKey) {
         credential: cert({
           projectId: firebaseProjectId,
           clientEmail: firebaseClientEmail,
-          privateKey: firebasePrivateKey.replace(/\\n/g, '\n'),
+          privateKey: firebasePrivateKey,
         }),
       })
     : apps[0];
