@@ -19,7 +19,7 @@ if (firebaseProjectId && firebaseClientEmail && firebasePrivateKey) {
         credential: cert({
           projectId: firebaseProjectId,
           clientEmail: firebaseClientEmail,
-          privateKey: firebasePrivateKey,
+          privateKey: firebasePrivateKey.replace(/\\n/g, '\n'),
         }),
       })
     : apps[0];
